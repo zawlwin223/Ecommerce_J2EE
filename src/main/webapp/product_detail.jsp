@@ -10,6 +10,78 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
 </head>
 <style>
+.loader {
+        transform: rotateZ(45deg);
+        perspective: 1000px;
+        border-radius: 50%;
+        width: 48px;
+        height: 48px;
+        color: #fff;
+      }
+        .loader:before,
+        .loader:after {
+          content: '';
+          display: block;
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: inherit;
+          height: inherit;
+          border-radius: 50%;
+          transform: rotateX(70deg);
+          animation: 1s spin linear infinite;
+        }
+        .loader:after {
+          color: violet;
+          transform: rotateY(70deg);
+          animation-delay: .4s;
+        }
+
+      @keyframes rotate {
+        0% {
+          transform: translate(-50%, -50%) rotateZ(0deg);
+        }
+        100% {
+          transform: translate(-50%, -50%) rotateZ(360deg);
+        }
+      }
+
+      @keyframes rotateccw {
+        0% {
+          transform: translate(-50%, -50%) rotate(0deg);
+        }
+        100% {
+          transform: translate(-50%, -50%) rotate(-360deg);
+        }
+      }
+
+      @keyframes spin {
+        0%,
+        100% {
+          box-shadow: .2em 0px 0 0px currentcolor;
+        }
+        12% {
+          box-shadow: .2em .2em 0 0 currentcolor;
+        }
+        25% {
+          box-shadow: 0 .2em 0 0px currentcolor;
+        }
+        37% {
+          box-shadow: -.2em .2em 0 0 currentcolor;
+        }
+        50% {
+          box-shadow: -.2em 0 0 0 currentcolor;
+        }
+        62% {
+          box-shadow: -.2em -.2em 0 0 currentcolor;
+        }
+        75% {
+          box-shadow: 0px -.2em 0 0 currentcolor;
+        }
+        87% {
+          box-shadow: .2em -.2em 0 0 currentcolor;
+        }
+      }
    .del{
     cursor:context-menu;
    }
@@ -92,7 +164,7 @@ ResultSet res = null;
                   <h6 class="navbar-brand ms-3 d-lg-block d-none mb-0" style="color: violet;">LAVENDERS</h6>
                 </li>
                 <li class="nav-item ">
-                  <a class="nav-link" href="/Ecommerce_Project/dashboard.jsp">Admin</a>
+                  <a class="nav-link" href="/Ecommerce_Project/admin_login.jsp">Admin</a>
                 </li>
                 <li class="nav-item position-relative cart_lg_link pt-2 d-lg-block d-none">
                  
@@ -168,7 +240,7 @@ while(res.next()){
                 <table style="width: 70%; ">
                 <tr class="p-5 ms-5 " style="height:60px">
                     <th class="text-start">Price : </th>
-                    <td class="text-center product-price" style="color: violet;"><%=res.getString(4) %></td>
+                    <td class="text-center product-price" style="color: violet;">Kyats <%=res.getString(4) %></td>
                 </tr>
                 <tr class="p-5 ms-3" style="height:60px">
                     <th class="text-start">Quantity:</th>
@@ -261,14 +333,22 @@ e.printStackTrace();
 %>
      </div>
 </div>
-
+<div class="loading d-flex justify-content-center align-items-center top-0" style="width: 100%;height: 100%;background-color: black;position: fixed;z-index: 5;">
+  <span class="loader"></span>
+</div>
 
 </body>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
  <script>
+ let loading = document.querySelector(".loading")
+ window.addEventListener('load', () => {
+  // loading.classList.remove("d-none")
+    loading.classList.add("d-none")
+ });
  let cart_link = document.querySelector(".cart_link")     
- let cart_lg_link = document.querySelector(".cart_lg_link")     
+ let cart_lg_link = document.querySelector(".cart_lg_link")  
+
 function cart_icon(){
   console.log("This is cart")
     let data = JSON.parse(localStorage.getItem("Cart_Item")) ;
@@ -286,7 +366,7 @@ cart_icon();
 
 
     </script>
-<script src="cart_1.js"></script>
+<script src="cart.js"></script>
 <script>
 
 let item_quantity_text = document.querySelector(".item_quantity_text");
@@ -304,7 +384,7 @@ item_quantity_text.innerHTML=Number(item_quantity_text.innerHTML)-1;
 
 </script>
 
-<script src="product_info.js"></script>
+<script src="product_info_1.js"></script>
 
 
 </html>

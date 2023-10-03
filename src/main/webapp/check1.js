@@ -23,11 +23,13 @@ console.log("Hello World it works")
 
 form.addEventListener("submit",(e)=>{
    e.preventDefault();
-   let date = new Date();
-   console.log(date)
        id =Math.random().toString(16).slice(2);
+       let date = new Date();
+       let current_date = `${date.getDate()}.${date.getMonth()}.${date.getFullYear()}`
+       console.log(current_date)
        console.log("Update Work")
-      console.log(user_data)
+      
+      user_data.date = current_date
  	 user_data.order_id = id
      user_data.email = email.value
      user_data.firstName = firstName.value
@@ -38,8 +40,7 @@ form.addEventListener("submit",(e)=>{
      user_data.zip = zip.value
      user_data.total = total+10;
      user_data.country = country.value
- console.log("It is clicked")
-     fetch("/Ecommerce_Project/Order",{
+ fetch("/Ecommerce_Project/Order",{
         method:"POST",
        
         body:JSON.stringify(user_data)
@@ -49,7 +50,7 @@ form.addEventListener("submit",(e)=>{
 	 }).then(()=>{
         localStorage.removeItem("Cart_Item")
      })
-    
+   
 })
 
 data.forEach((val)=>{
@@ -66,8 +67,8 @@ tr+=`
 `
 })
 table.innerHTML= tr;
-subtotal.innerHTML=`$${total}`;
-final.innerHTML = `$${total+Number(shipping.innerHTML.slice(1))}`;
+subtotal.innerHTML=`Kyats ${total}`;
+final.innerHTML = `Kyats ${total+Number(shipping.innerHTML.slice(6))}`;
 
 user_data.product = product
 

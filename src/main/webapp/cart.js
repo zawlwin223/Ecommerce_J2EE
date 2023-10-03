@@ -47,9 +47,10 @@ function to_cart_body(data){
        
    
        <div class="me-3 d-flex flex-column w-50">
-           <span class="text-uppercase">${val.title}</span>
-           <span class="fw-bold mt-2 mb-2 price">$${val.total_price}</span>
-            <span class="fw-bold mt-2 mb-2 ">${val.size}</span>
+           <span class="text-uppercase fw-bold">${val.title}</span>
+            <span class="fw-bold   ">Size : ${val.size}</span>
+           <span class="fw-bold  price">Kyats ${val.total_price}</span>
+           
            <div class="d-flex justify-content-around " style="border: 1px solid black;width: 80px;">
        <i class="bi bi-plus" onclick="plus(event,'${val.price}')"></i>
        <span class="quantity_text">${val.quantity}</span>
@@ -71,7 +72,7 @@ function total_price(){
     let cart_total_price = 0;
     let price = document.querySelectorAll(".price");
    price.forEach(val=>{
-    let item_price =Number(val.innerHTML.slice(1));
+    let item_price =Number(val.innerHTML.slice(6));
     cart_total_price+=item_price
     
    })
@@ -79,7 +80,7 @@ function total_price(){
    `
    <div class="d-flex flex-column">
    <span class="text-uppercase fw-bold">Total</span>
-   <span class="fw-bold total_price">$${cart_total_price}</span>
+   <span class="fw-bold total_price">Kyats ${cart_total_price}</span>
 </div>
 <div>
    <button class="btn btn-dark w-100 h-25 mb-0 check_out" onclick="checkout()">Check Out</button>
@@ -107,15 +108,15 @@ function  plus(e,p){
     let cart_item =e.target.closest(".cart_item");
     let quantity_text = e.target.closest(".cart_item").querySelector(".quantity_text");
     let item_price = e.target.closest(".cart_item").querySelector(".price");
-    let price=Number(item_price.innerHTML.slice(1));
+    let price=Number(item_price.innerHTML.slice(6));
     let item_id = cart_item.getAttribute("id");
    
     let user_click_item = data_from_LS.find((item)=>item.id==item_id);
     
      price +=Number(p.slice(1));
      user_click_item.quantity++;
-    user_click_item.total_price+=Number(user_click_item.price.slice(1));
-     item_price.innerHTML = `$${user_click_item.total_price}`;
+    user_click_item.total_price+=Number(user_click_item.price.slice(6));
+     item_price.innerHTML = `Kyats ${user_click_item.total_price}`;
     quantity_text.innerHTML = Number(quantity_text.innerHTML)+1 ;
 
     total_plus(p);
@@ -124,9 +125,9 @@ function  plus(e,p){
 
 function total_plus(p){
     let total_price = document.querySelector(".total_price");
-    let item_price = Number(p.slice(1));
-    let total = Number(total_price.innerHTML.substring(1))+item_price;
-    total_price.innerHTML = `$${total}`
+    let item_price = Number(p.slice(6));
+    let total = Number(total_price.innerHTML.slice(6))+item_price;
+    total_price.innerHTML = `Kyats ${total}`
     console.log(total);
     console.log("This is total plus")
 }
@@ -147,14 +148,14 @@ function minus(e,p){
     }
     quantity_text.innerHTML = Number(quantity_text.innerHTML)-1 ;
     let item_price = e.target.closest(".cart_item").querySelector(".price");
-    let price=Number(item_price.innerHTML.slice(1));
+    let price=Number(item_price.innerHTML.slice(6));
     let user_click_item = data_from_LS.find((item)=>item.id==item_id);
    
     //  price -=Number(p.slice(1));;
      
      user_click_item.quantity--;
-     user_click_item.total_price-=Number(user_click_item.price.slice(1));
-     item_price.innerHTML = `$${user_click_item.total_price}`;
+     user_click_item.total_price-=Number(user_click_item.price.slice(6));
+     item_price.innerHTML = `Kyats ${user_click_item.total_price}`;
     //  user_click_item.price=`$${price}`;
     total_minus(p);
     save_to_ls(data_from_LS)
@@ -162,9 +163,9 @@ function minus(e,p){
 
 function total_minus(p){
     let total_price = document.querySelector(".total_price");
-    let item_price = Number(p.slice(1));
-    let total = Number(total_price.innerHTML.substring(1))-item_price;
-    total_price.innerHTML = `$${total}`
+    let item_price = Number(p.slice(6));
+    let total = Number(total_price.innerHTML.slice(6))-item_price;
+    total_price.innerHTML = `Kyats ${total}`
     console.log(total)
     console.log("This is total minus")
 }
@@ -183,8 +184,8 @@ function remove_item(e,ind){
    let price = e.target.closest(".cart_item").querySelector(".price");
    let img = e.target.closest(".cart_item").querySelector("img").src
    let total_price = document.querySelector(".total_price");
-   let new_price =  Number(total_price.innerHTML.substring(1))-Number(price.innerHTML.slice(1));
-   total_price.innerHTML = `$${new_price}`
+   let new_price =  Number(total_price.innerHTML.slice(6))-Number(price.innerHTML.slice(6));
+   total_price.innerHTML = `Kyats ${new_price}`
    e.target.closest(".cart_item").remove();
    cart_icon();
       

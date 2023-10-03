@@ -66,7 +66,8 @@ public class Order extends HttpServlet {
 		    String zip = jsonObject.getString("zip");
 		    String country = jsonObject.getString("country");
 		    String order_id = jsonObject.getString("order_id");
-		   System.out.print(order_id);
+		    String date = jsonObject.getString("date");
+		   System.out.print(date);
 		    
 		    System.out.print("It works");
 		    int total = jsonObject.getInt("total");
@@ -77,7 +78,7 @@ public class Order extends HttpServlet {
 				con = DriverManager.getConnection("jdbc:mysql://localhost/ecommerce","root","root");
 			
 				ps = con.prepareStatement("insert into user(Order_Id,Name,Email,Address,City,Phone,Zip,Country)values(?,?,?,?,?,?,?,?)");
-				ps_order =  con.prepareStatement("insert into userOrder(Order_Id,userName,orderProduct,quantity,price,totalPrice,Image,category,brand,size)values(?,?,?,?,?,?,?,?,?,?)");
+				ps_order =  con.prepareStatement("insert into userOrder(Order_Id,userName,orderProduct,quantity,price,totalPrice,Image,category,brand,size,date)values(?,?,?,?,?,?,?,?,?,?,?)");
 				
 				ps.setString(1,order_id);
 				ps.setString(2,first_name+" "+last_name);
@@ -107,6 +108,7 @@ public class Order extends HttpServlet {
 					ps_order.setString(8,explrObject.getString("category"));
 					ps_order.setString(9,explrObject.getString("brand"));
 					ps_order.setString(10,explrObject.getString("size"));
+					ps_order.setString(11,date);
 					  System.out.print("Hello World");
 					 ps_order.executeUpdate();
 						 

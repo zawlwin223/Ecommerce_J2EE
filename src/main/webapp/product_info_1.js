@@ -54,8 +54,8 @@ function add_cart(){
 function setItem(){
 	let product_size = document.querySelector(".size").value;
 
-console.log("Hello Product Info Works")
-    let total_result = Number( product_price.slice(1))*Number(product_quantity.innerHTML)
+
+    let total_result = Number(product_price.slice(6))*Number(product_quantity.innerHTML)
     items.id = product_img.getAttribute("product_id")
     items.Img = product_img.getAttribute("src");
     items.title = product_title;
@@ -66,7 +66,7 @@ console.log("Hello Product Info Works")
     items.total_price =total_result;
     items.size = product_size;
 
-console.log(items)
+console.log(total_result)
     if(data_from_LS == null){
        data_from_LS= []
         

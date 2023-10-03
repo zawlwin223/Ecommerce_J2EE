@@ -132,9 +132,9 @@ while(resultSet.next()){
                             <td scope="row"><%=resultSet.getString(1) %></td>
                             <td><div class="d-flex justify-content-center align-items-center"><img src="./Image/<%=resultSet.getString(6) %>" alt="" style="width: 50px;"><span class="ms-2"><%=resultSet.getString(2) %> </span></div></td>
                             <td><%=resultSet.getString(3) %> </td>
-                            <td><%=resultSet.getString(4) %> </td>
+                            <td>Kyats <%=resultSet.getString(4) %> </td>
                             <td><%=resultSet.getString(5) %> </td>
-                            <td><a href=""> <i class="bi bi-pencil text-success"></i></a></td>
+                            <td><a href="edit2.jsp?ID=<%=resultSet.getString(1) %>"> <i class="bi bi-pencil text-success"></i></a></td>
                             <td><a href=Delete?ID=<%=resultSet.getString(1) %>> <i class="bi bi-trash text-danger"></i></a></td>
                           </tr>
  

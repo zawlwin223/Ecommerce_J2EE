@@ -8,9 +8,13 @@
  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
 <!-- Option 1: Include in HTML -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
+  <link rel="stylesheet" href="vendor/feather-icons-web/feather.css">
 </head>
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap');
+i{
+color:violet !important;
+}
 *{
     font-family: 'Roboto', sans-serif;
     margin: 0;
@@ -223,7 +227,7 @@ statement=connection.createStatement();
                                         <div class="row  justify-content-center align-items-center">
                                             <div class="col-4">
                                                 
-                                                    <i class="feather-shopping-bag h1 text-primary mb-0"></i>
+                                                    <i class="feather-shopping-bag h1  mb-0"></i>
                     
                                             </div>
                                             <div class="col-8">
@@ -263,7 +267,7 @@ e.printStackTrace();
                                         <div class="row  justify-content-center align-items-center">
                                             <div class="col-4">
                                                 
-                                                    <i class="feather-users h1 text-primary mb-0"></i>
+                                                    <i class="feather-users h1 mb-0"></i>
                     
                                             </div>
                                             <div class="col-8">
@@ -302,7 +306,7 @@ e.printStackTrace();
                                         <div class="row  justify-content-center align-items-center">
                                             <div class="col-4">
                                                 
-                                                    <i class="feather-box h1 text-primary mb-0"></i>
+                                                    <i class="feather-box h1 mb-0"></i>
                     
                                             </div>
                                             <div class="col-8">
@@ -341,7 +345,7 @@ e.printStackTrace();
                                         <div class="row  justify-content-center align-items-center">
                                             <div class="col-4">
                                                 
-                                                    <i class="feather-map-pin h1 text-primary mb-0"></i>
+                                                    <i class="feather-map-pin h1 mb-0"></i>
                     
                                             </div>
                                             <div class="col-8">
@@ -386,7 +390,7 @@ e.printStackTrace();
                                         <div class="d-flex justify-content-between align-items-end item-card">
                                             <div class=" mb-4 w-50">
                                                 <h4 class="mb-2">Gucci Hoodie</h4>
-                                                <span class="text-light font-weight-bolder">$1000</span>
+                                                <span class="text-light font-weight-bolder">Kyats 150000</span>
                                                 <div class="progress mt-2 d-none">
                                                     <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" style="width: 50%" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100"></div>
                                                   </div>
@@ -398,7 +402,7 @@ e.printStackTrace();
                                         <div class="d-flex justify-content-between align-items-end item-card">
                                             <div class="w-50 mb-4">
                                                 <h4 class="mb-2">LV Purse</h4>
-                                                <span class="text-light font-weight-bolder">$500</span>
+                                                <span class="text-light font-weight-bolder">Kyats 52000</span>
                                                 <div class="progress mt-2 d-none">
                                                     <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" style="width: 70%" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100"></div>
                                                   </div>
@@ -410,7 +414,7 @@ e.printStackTrace();
                                         <div class="d-flex justify-content-between align-items-end item-card">
                                             <div class="w-50 mb-4">
                                                 <h4 class="mb-2">Nike Shirt</h4>
-                                                <span class="text-light font-weight-bolder">$300</span>
+                                                <span class="text-light font-weight-bolder">Kyats 30000</span>
                                                 <div class="progress mt-2 d-none">
                                                     <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" style="width: 40%" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100"></div>
                                                   </div>
@@ -422,7 +426,7 @@ e.printStackTrace();
                                         <div class="d-flex justify-content-between align-items-end item-card">
                                             <div class="w-50 mb-4">
                                                 <h4 class="mb-2">Nike Pant</h4>
-                                                <span class="text-light font-weight-bolder">$1000</span>
+                                                <span class="text-light font-weight-bolder">Kyats 10000</span>
                                                 <div class="progress mt-2 d-none">
                                                     <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" style="width: 80%" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100"></div>
                                                   </div>
@@ -483,7 +487,7 @@ while(resultSet.next()){
                           
                             <td><div class="d-flex justify-content-center align-items-center"><img src="<%=resultSet.getString(1) %>" alt="" style="width: 50px;"><span class="ms-2"><%=resultSet.getString(5) %> </span></div></td>
                             <td><%=resultSet.getString(2) %> </td>
-                            <td>$<%=resultSet.getString(4) %> </td>
+                            <td>Kyats <%=resultSet.getString(4) %> </td>
                             <td><%=resultSet.getString(3) %> </td>
                             
                           </tr>

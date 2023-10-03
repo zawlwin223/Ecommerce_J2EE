@@ -49,7 +49,7 @@ function to_cart_body(data){
        <div class="me-3 d-flex flex-column w-50">
            <span class="text-uppercase fw-bold">${val.title}</span>
             <span class="fw-bold   ">Size : ${val.size}</span>
-           <span class="fw-bold  price">$${val.total_price}</span>
+           <span class="fw-bold  price">Kyats ${val.total_price}</span>
            
            <div class="d-flex justify-content-around " style="border: 1px solid black;width: 80px;">
        <i class="bi bi-plus" onclick="plus(event,'${val.price}')"></i>
@@ -80,7 +80,7 @@ function total_price(){
    `
    <div class="d-flex flex-column">
    <span class="text-uppercase fw-bold">Total</span>
-   <span class="fw-bold total_price">$${cart_total_price}</span>
+   <span class="fw-bold total_price">Kyats ${cart_total_price}</span>
 </div>
 <div>
    <button class="btn btn-dark w-100 h-25 mb-0 check_out" onclick="checkout()">Check Out</button>

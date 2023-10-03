@@ -1,5 +1,3 @@
-
-
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
@@ -8,55 +6,48 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.*;
 
-
-public class Edit2 extends HttpServlet {
+public class edit2 extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+
 	
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		response.setContentType("text/html");
 		PrintWriter pw=response.getWriter();
 		
-		Connection con; PreparedStatement ps; int status=0;
+		pw.println("<h1>Update Employee</h1>");		
+		Connection con; PreparedStatement ps; ResultSet res;
 		try {
 			
 			Class.forName("com.mysql.cj.jdbc.Driver");
 			con=DriverManager.getConnection("jdbc:mysql://localhost/ecommerce","root","root");
-			ps=con.prepareStatement("update products set Name=?, Category=?, Price=?, tag=? ,file=? where id=?");
-			String sid=request.getParameter("id");
+		    ps=con.prepareStatement("select * from products where ID=?");
+		    String sid=request.getParameter("ID");
 			int id=Integer.parseInt(sid);
-		
-			String product_name=request.getParameter("product_name");
-			String category_name=request.getParameter("category_name");
-			String price=request.getParameter("price");
-			String tag=request.getParameter("tag");
-			String fl = request.getParameter("file");
-		    System.out.println(fl);
-		
-			ps.setString(1,product_name);
-			ps.setString(2,category_name);
-			ps.setString(3,price);
-			ps.setString(4,tag);
-			ps.setString(5, fl);
-			ps.setInt(6, id);
-			System.out.print(product_name);
-			System.out.print(category_name);
-			System.out.print(price);
-			System.out.print(tag);
-	
-			System.out.print(id);
-			
-		status=ps.executeUpdate();	
-		
-		
-		}catch(Exception e) {
+		    ps.setInt(1, id);
+		    res=ps.executeQuery();
+		    while(res.next()) {
+			String nam=res.getString(2);
+			String pas=res.getString(3);
+			String ema=res.getString(4);
+			String cit=res.getString(5);
+			pw.println("<form action='Edit2' method='post'>");
+			pw.print("<table>");
+			pw.print("<tr><td></td><td><input type='hidden' name='id' value='"+id+"'></td></tr>");
+			pw.print("<tr><td>Name: </td><td><input type='text' name='n1' value='"+nam+"'></td></tr>");
+			pw.print("<tr><td>Password: </td><td><input type='password' name='p1' value='"+pas+"'></td></tr>");
+			pw.print("<tr><td>Email: </td><td><input type='email' name='e1' value='"+ema+"'></td></tr>");
+			pw.print("<tr><td>City: </td><td>");
+			pw.print("<select name='c1' value='"+cit+"'>");
+			pw.print("<option>Sittway</option>");
+			pw.print("<option>Kyaukphyu</option>");
+			pw.print("<option>Taungkok</option>");
+			pw.print("<option>Myebon</option></select></td></tr>");
+			pw.print("<tr><td></td><td><input type='submit' value='Edit &amp; Save'></td>");
+			pw.print("</table>");
+			pw.print("</form>");
+		}
+		  }catch(Exception e) {
 			e.printStackTrace();
-		}
-		
-		if(status>0) {
-			response.sendRedirect("product_view.jsp");
-		}
-		else {
-			pw.println("<font color=red> Unable to update the record!</font>");
 		}
 	}
 

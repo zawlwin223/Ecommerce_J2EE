@@ -7,9 +7,19 @@
 <title>Insert title here</title>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+  />
 </head>
 <style>
-
+body{
+    background:#4E5180;
+}
+::placeholder { 
+  color: white!important;
+  
+}
 .card{
 border-radius:20px !important;
 }
@@ -97,6 +107,79 @@ right:10px;
 .detail:hover{
 color:violet !important;
 }
+
+.loader {
+        transform: rotateZ(45deg);
+        perspective: 1000px;
+        border-radius: 50%;
+        width: 48px;
+        height: 48px;
+        color: #fff;
+      }
+        .loader:before,
+        .loader:after {
+          content: '';
+          display: block;
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: inherit;
+          height: inherit;
+          border-radius: 50%;
+          transform: rotateX(70deg);
+          animation: 1s spin linear infinite;
+        }
+        .loader:after {
+          color: violet;
+          transform: rotateY(70deg);
+          animation-delay: .4s;
+        }
+
+      @keyframes rotate {
+        0% {
+          transform: translate(-50%, -50%) rotateZ(0deg);
+        }
+        100% {
+          transform: translate(-50%, -50%) rotateZ(360deg);
+        }
+      }
+
+      @keyframes rotateccw {
+        0% {
+          transform: translate(-50%, -50%) rotate(0deg);
+        }
+        100% {
+          transform: translate(-50%, -50%) rotate(-360deg);
+        }
+      }
+
+      @keyframes spin {
+        0%,
+        100% {
+          box-shadow: .2em 0px 0 0px currentcolor;
+        }
+        12% {
+          box-shadow: .2em .2em 0 0 currentcolor;
+        }
+        25% {
+          box-shadow: 0 .2em 0 0px currentcolor;
+        }
+        37% {
+          box-shadow: -.2em .2em 0 0 currentcolor;
+        }
+        50% {
+          box-shadow: -.2em 0 0 0 currentcolor;
+        }
+        62% {
+          box-shadow: -.2em -.2em 0 0 currentcolor;
+        }
+        75% {
+          box-shadow: 0px -.2em 0 0 currentcolor;
+        }
+        87% {
+          box-shadow: .2em -.2em 0 0 currentcolor;
+        }
+      }
 </style>
 <body>
 <%@page import="java.sql.DriverManager"%>
@@ -157,7 +240,7 @@ statement=connection.createStatement();
                   <h6 class="navbar-brand ms-3 d-lg-block d-none mb-0" style="color: violet;">LAVENDERS</h6>
                 </li>
                 <li class="nav-item ">
-                  <a class="nav-link" href="/Ecommerce_Project/dashboard.jsp">Admin</a>
+                  <a class="nav-link" href="/Ecommerce_Project/admin_login.jsp">Admin</a>
                 </li>
                 <li class="nav-item position-relative cart_lg_link pt-2 d-lg-block d-none">
                  
@@ -206,20 +289,22 @@ statement=connection.createStatement();
       </div>
       
     </div>
-<div class="container-fluid">
+<div class="container-fluid" >
 <div class="container">
-<div class="row mt-5 text-end">
+<div class="row mt-5 text-end" >
 <div class="col-8 mt-4  d-flex justify-content-end align-items-center">
  <div class="w-75 position-relative d-flex justify-content-center align-items-center">
  
- <input type="text" class="form-control bg-transparent w-100 search"  placeholder="Search By Product Name" autocomplete=off>
+ <input type="text" class="form-control bg-transparent w-100 search text-light"  placeholder="Search By Product Name" autocomplete=off>
  <span class="position-absolute icon2"><i class="bi bi-search"></i></span>
  </div>
  
  
 </div>
 <div class="col-4 dropdown mt-4 d-flex justify-content-start align-items-center">
-  <button class="btn btn-secondary dropdown-toggle w-50" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+  <button class="btn btn-secondary dropdown-toggle w-50" type="button" data-bs-toggle="dropdown" aria-expanded="false" style="
+    background: mintcream !important;
+    color: black !important;">
    Categories
   </button>
   <ul class="dropdown-menu">
@@ -256,7 +341,7 @@ e.printStackTrace();
 
 </div>
 
- <div class="row vh-100  d-flex flex-wrap mt-2 shop_row justify-content-center">
+ <div class="row vh-100  d-flex flex-wrap mt-2 shop_row justify-content-center" >
 <%
 try{ 
 
@@ -274,7 +359,7 @@ while(resultSet.next()){
 
 				
      
-           <div class="card shadow me-3 col-sm-12 d-flex justify-content-center align-items-center mt-3 border-0 rounded-0 position-relative" style="height: 200px;border-radius:50px;width:360px" id="<%=resultSet.getInt(1) %> ">
+           <div class="card shadow me-3 col-sm-12 d-flex justify-content-center align-items-center mt-3 border-0 rounded-0 position-relative" style="height: 200px;border-radius:50px;width:360px;    background: mintcream;" id="<%=resultSet.getInt(1) %> ">
              <div class="d-flex justify-content-evenly align-items-center w-100">
              <div style="display:flex;flex-direction:column">
              <h5 class="fw-bold text-uppercase product_name text-center mt-4"><%=resultSet.getString(2) %></h5>
@@ -309,7 +394,7 @@ res=ps.executeQuery();
 while(res.next()){
 %> 
 		
-                        <div class="card shadow me-3 col-sm-12 d-flex justify-content-center align-items-center mt-3 border-0 rounded-0 position-relative" style="height: 200px;border-radius:50px;width:360px" id="<%=res.getInt(1) %> ">
+                        <div data-wow-duration="2s" data-wow-delay="5s" class="card wow animate__bounce shadow me-3 col-sm-12 d-flex justify-content-center align-items-center mt-3 border-0 rounded-0 position-relative" style="height: 200px;border-radius:50px;width:360px" id="<%=res.getInt(1) %> ">
              <div class="d-flex justify-content-evenly align-items-center w-100">
               <div class= "box">
              <h5 class="fw-bold text-uppercase mt-4"><%=res.getString(2) %></h5>
@@ -341,11 +426,30 @@ e.printStackTrace();
 </div>
    </div>
 
-
+<div class="loading d-flex justify-content-center align-items-center top-0" style="width: 100%;height: 100%;background-color: black;position: fixed;z-index: 5;">
+  <span class="loader"></span>
+</div>
 </body>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
- <script>
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/wow/1.1.2/wow.min.js" integrity="sha512-Eak/29OTpb36LLo2r47IpVzPBLXnAMPAVypbSZiZ4Qkf8p/7S/XRG5xp7OKWPPYfJT6metI+IORkR5G8F900+g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
  
+ <script>
+
+ let wow = new WOW(
+                       {
+                       boxClass:     'wow',      // default
+                       animateClass: 'animate__animated', // default
+                       offset:       0,          // default
+                       mobile:       true,       // default
+                       live:         true        // default
+                     }
+                     )
+                     wow.init();
+ let loading = document.querySelector(".loading")
+ window.addEventListener('load', () => {
+  // loading.classList.remove("d-none")
+    loading.classList.add("d-none")
+});
  let cart_link = document.querySelector(".cart_link")     
  let cart_lg_link = document.querySelector(".cart_lg_link")     
 function cart_icon(){
@@ -365,8 +469,7 @@ cart_icon();
 
 
     </script>
-<script src="cart_1.js"></script>
-
+<script src="cart.js"></script>
 <script >
 let search = document.querySelector(".search");
 let product_name = document.querySelectorAll(".product_name");
@@ -385,6 +488,7 @@ search.addEventListener("input",()=>{
 		}
 	})
 })
+
 
 </script>
 

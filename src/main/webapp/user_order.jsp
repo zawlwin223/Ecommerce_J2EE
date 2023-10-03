@@ -129,11 +129,11 @@ try{
 while(res.next()){
 %> 
 		 <tr>
-                            <td scope="row">11.12.2023</td>
+                            <td scope="row"><%=res.getString(11) %></td>
                             <td><img src="<%=res.getString(7) %>" alt="" style="width: 50px;"><span class="ms-3"><%=res.getString(3) %></span></td>
                            <td><%=res.getString(10) %></td>
                             <td><%=res.getInt(4) %></td>
-                            <td class="price">$<%=res.getInt(5) %></td>
+                            <td class="price">Kyats <%=res.getInt(5) %></td>
                           </tr>	
 
 <%
@@ -171,9 +171,9 @@ let price = document.querySelectorAll(".price");
 let total = document.querySelector(".total");
 let total_value = 0 ;
 price.forEach((val)=>{
-  let price_value = Number(val.innerHTML.substring(1))
+  let price_value = Number(val.innerHTML.slice(6))
   total_value+=price_value
-  total.innerHTML = `$\${total_value}`
+  total.innerHTML = `Kyats \${total_value}`
   console.log(total_value)
 })
 
